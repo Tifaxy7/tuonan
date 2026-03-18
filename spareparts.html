@@ -352,8 +352,25 @@
 .ghana-map-link:hover { background: #e0e8f8; }
 
 @media (max-width: 768px) {
-  .ghana-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .sp-hero { padding: 6rem 0 3rem; }
+  .sp-hero h1 { font-size: 1.8rem; }
+  .sp-hero-badges { gap: 0.5rem; }
+  .sp-badge { font-size: 0.75rem; padding: 0.35rem 0.8rem; }
+  .services-section, .parts-photo-section, .catalogue-section, .support-strip { padding: 3rem 0; }
+  .services-cards { grid-template-columns: 1fr; }
+  .service-card-img { height: 200px; }
+  .parts-photo-grid { grid-template-columns: 1fr; }
+  .part-photo-card img { height: 220px; }
+  .catalogue-grid { grid-template-columns: repeat(2, 1fr); }
+  .support-strip-inner { grid-template-columns: 1fr; gap: 2rem; text-align: left; }
+  .ghana-section { padding: 3rem 0; }
+  .ghana-inner { grid-template-columns: 1fr; gap: 2rem; }
   .ghana-services-list { grid-template-columns: 1fr; }
+  .ghana-text h2 { font-size: 1.5rem; }
+  .ghana-map-card { padding: 1.5rem; }
+}
+@media (max-width: 480px) {
+  .catalogue-grid { grid-template-columns: 1fr 1fr; }
 }
 
 </style>
@@ -403,14 +420,14 @@
     <p class="services-sub">Reliable spare parts supply and expert technical support for your fleet</p>
     <div class="services-cards">
       <div class="service-card">
-        <img src="sp-engine.jpg" alt="Spare Parts" class="service-card-img">
+        <img src="sp-tyre.jpg" alt="Spare Parts" class="service-card-img">
         <div class="service-card-body">
           <h3>Spare Parts Supply</h3>
           <p>Engine, brake, suspension, electrical, and body parts available for quick delivery. We source genuine components directly from Chinese manufacturers for all bus models we supply.</p>
         </div>
       </div>
       <div class="service-card">
-        <img src="sp-ac.jpg" alt="Technical Support" class="service-card-img">
+        <img src="sp-engine.jpg" alt="Technical Support" class="service-card-img">
         <div class="service-card-body">
           <h3>Technical Support</h3>
           <p>Our technical team is available via WhatsApp and phone to diagnose issues and guide your mechanics through repairs. We also supply service manuals for all exported bus models.</p>
@@ -426,6 +443,10 @@
     <h2>Inside the Bus</h2>
     <p class="parts-photo-sub">A closer look at the components we support and supply</p>
     <div class="parts-photo-grid">
+      <div class="part-photo-card" onclick="openLightbox('sp-tyre.jpg')">
+        <img src="sp-tyre.jpg" alt="Wheel & Tyre">
+        <div class="part-photo-label">Tyres & Wheels<span>Direct from Chinese manufacturers</span></div>
+      </div>
       <div class="part-photo-card" onclick="openLightbox('sp-ac.jpg')">
         <img src="sp-ac.jpg" alt="AC System">
         <div class="part-photo-label">Air Conditioning System<span>Midea & compatible units</span></div>
@@ -437,10 +458,6 @@
       <div class="part-photo-card" onclick="openLightbox('sp-engine.jpg')">
         <img src="sp-engine.jpg" alt="Engine Bay">
         <div class="part-photo-label">Engine Parts<span>Filters, belts, gaskets & more</span></div>
-      </div>
-      <div class="part-photo-card" onclick="openLightbox('sp-wheel.jpg')">
-        <img src="sp-wheel.jpg" alt="Wheel & Tyre">
-        <div class="part-photo-label">Tyres & Wheels<span>Direct from Chinese manufacturers</span></div>
       </div>
     </div>
   </div>

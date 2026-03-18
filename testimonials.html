@@ -5,10 +5,164 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Testimonials | Tuonan Bus Export</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+
+/* HERO */
+.test-hero {
+  background: linear-gradient(135deg, #0a1628 0%, #0d2461 100%);
+  padding: 8rem 0 4rem;
+  text-align: center;
+}
+.test-hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+.test-hero h1 span { color: #4d8aff; }
+.test-hero p { color: rgba(255,255,255,0.72); font-size: 1.05rem; max-width: 500px; margin: 0 auto; }
+
+/* STATS BAR */
+.stats-bar {
+  background: var(--blue);
+  padding: 2rem 0;
+}
+.stats-bar-inner {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  flex-wrap: wrap;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+  display: block;
+}
+.stat-label { color: rgba(255,255,255,0.8); font-size: 0.85rem; font-weight: 500; }
+
+/* REVIEWS */
+.reviews-section { padding: 5rem 0; background: var(--white); }
+.reviews-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.reviews-sub { text-align: center; color: var(--gray); margin-bottom: 3rem; }
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.review-card {
+  background: #f4f6fb;
+  border-radius: 12px;
+  padding: 2rem;
+  border-left: 4px solid var(--blue);
+}
+.review-stars { color: #f5a623; font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+.review-text {
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+.review-author { display: flex; align-items: center; gap: 0.8rem; }
+.review-avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.review-author h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0 0 0.15rem;
+}
+.review-author span { font-size: 0.8rem; color: var(--gray); }
+
+/* CLIENT VISITS */
+.visits-section { padding: 5rem 0; background: #f4f6fb; }
+.visits-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.visits-sub { text-align: center; color: var(--gray); margin-bottom: 3rem; }
+.visits-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.8rem;
+}
+.visit-item {
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.visit-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.visit-item:hover img { transform: scale(1.07); }
+
+/* LIGHTBOX */
+.img-lightbox {
+  display: none; position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.92); z-index: 9999;
+  align-items: center; justify-content: center; padding: 2rem;
+}
+.img-lightbox.open { display: flex; }
+.img-lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 8px; }
+.img-lightbox-close {
+  position: fixed; top: 1.5rem; right: 1.5rem;
+  background: var(--blue); color: white; border: none;
+  width: 42px; height: 42px; border-radius: 50%;
+  font-size: 1.3rem; cursor: pointer; z-index: 10000;
+}
+
+@media (max-width: 768px) {
+  .stats-bar-inner { gap: 2.5rem; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .visits-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 480px) {
+  .visits-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
 </head>
 <body>
+
+<div class="img-lightbox" id="imgLightbox" onclick="closeLightbox(event)">
+  <button class="img-lightbox-close" onclick="document.getElementById('imgLightbox').classList.remove('open')">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 <nav class="navbar">
   <a href="index.html" class="logo"><img src="logo.jpg" alt="Tuonan Bus Export Logo"></a>
@@ -24,69 +178,96 @@
   </ul>
 </nav>
 
-<div class="page-hero">
+<!-- HERO -->
+<div class="test-hero">
   <div class="container">
-    <div class="section-label">What Clients Say</div>
-    <h1>Client <span>Testimonials</span></h1>
-    <p>Trusted by transport operators across Africa and beyond</p>
+    <h1>Trusted by Clients<br><span>Across the World</span></h1>
+    <p>What transport operators from Africa and beyond say about working with Tuonan</p>
   </div>
 </div>
 
-<section class="testimonials-section">
+<!-- STATS BAR -->
+<div class="stats-bar">
   <div class="container">
-    <div class="testimonials-grid">
+    <div class="stats-bar-inner">
+      <div class="stat-item">
+        <span class="stat-num">750+</span>
+        <span class="stat-label">Buses Exported</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">20+</span>
+        <span class="stat-label">Countries Served</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Client Satisfaction</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">We ordered 10 city buses from Tuonan and the entire process was smooth from start to finish. The documentation was handled professionally and the buses arrived in perfect condition. Highly recommended.</p>
-        <div class="testimonial-author">
-          <h4>Emmanuel O.</h4>
-          <span>Transport Operator — Lagos, Nigeria</span>
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div class="container">
+    <h2>Reviews</h2>
+    <p class="reviews-sub">What our clients say about us</p>
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The spare parts supply and technical support in Kumasi have been a game changer for our fleet maintenance."</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div><h4>Amina Diallo</h4><span>Kumasi, Ghana</span></div>
         </div>
       </div>
 
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">Tuonan gave us very competitive pricing for a fleet of school buses. Their team was responsive and kept us updated throughout the shipping process. The buses are still running perfectly two years later.</p>
-        <div class="testimonial-author">
-          <h4>Joseph K.</h4>
-          <span>School Administrator — Nairobi, Kenya</span>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"China Anhui Tuonan Company delivered our buses safely and on time. The quality is excellent for our transport business."</p>
+        <div class="review-author">
+          <div class="review-avatar">K</div>
+          <div><h4>Kwame Mensah</h4><span>Accra, Ghana</span></div>
         </div>
       </div>
 
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">What impressed me most was their transparency. No hidden fees, everything was clearly explained. The pre-shipment inspection gave us full confidence. We are placing a second order this year.</p>
-        <div class="testimonial-author">
-          <h4>Moussa D.</h4>
-          <span>Fleet Manager — Dakar, Senegal</span>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I purchased a used Yutong bus and I couldn't be more satisfied! The bus was in excellent condition, just as promised. The entire process was smooth and hassle-free. Highly recommended."</p>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div><h4>Mohamed Ndiaye</h4><span>Dakar, Senegal</span></div>
         </div>
       </div>
 
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">We've worked with several Chinese bus exporters before but Tuonan is by far the most reliable. Their after-sales support is exceptional — they helped us source spare parts quickly when we needed them.</p>
-        <div class="testimonial-author">
-          <h4>Abebe T.</h4>
-          <span>Transport Director — Addis Ababa, Ethiopia</span>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"We've been importing Yutong buses for our public transport fleet for several years. Tuonan is by far the best we've worked with. Their attention to detail and dedication to quality sets them apart."</p>
+        <div class="review-author">
+          <div class="review-avatar">C</div>
+          <div><h4>Chidi Okafor</h4><span>Lagos, Nigeria</span></div>
         </div>
       </div>
 
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">Fast response time, honest pricing, and quality buses. The intercity coaches we purchased have been running on our routes for over a year with minimal maintenance issues. Very happy with the purchase.</p>
-        <div class="testimonial-author">
-          <h4>Kwame A.</h4>
-          <span>Bus Company Owner — Accra, Ghana</span>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Cela fait plusieurs années que nous importons des bus Yutong neufs depuis la Chine, et l'entreprise de Tom est notre premier choix. Les bus arrivent toujours à temps et en parfait état."</p>
+        <div class="review-author">
+          <div class="review-avatar">K</div>
+          <div><h4>Kofi N'Guessan</h4><span>Abidjan, Côte d'Ivoire</span></div>
         </div>
       </div>
 
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">Tuonan handled everything from selection to delivery without any issues. The certified used buses we ordered were in excellent condition — exactly as described. Professional team throughout.</p>
-        <div class="testimonial-author">
-          <h4>Fatima M.</h4>
-          <span>Operations Manager — Casablanca, Morocco</span>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"After a long search for a reliable supplier, I found Tuonan. I purchased a new Yutong bus and the service was outstanding. Everything was handled professionally from order to delivery."</p>
+        <div class="review-author">
+          <div class="review-avatar">S</div>
+          <div><h4>Sulaiman Jalloh</h4><span>Freetown, Sierra Leone</span></div>
         </div>
       </div>
 
@@ -94,6 +275,32 @@
   </div>
 </section>
 
+<!-- CLIENT VISIT PHOTOS -->
+<section class="visits-section">
+  <div class="container">
+    <h2>Clients Visiting Tuonan</h2>
+    <p class="visits-sub">Clients from across Africa visiting our yard and office in Anhui, China</p>
+    <div class="visits-grid">
+      <div class="visit-item"><img src="client1.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client2.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client3.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client4.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client5.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client6.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client7.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client8.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client9.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client10.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client11.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client12.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client13.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client14.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+      <div class="visit-item"><img src="client15.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
 <section class="cta-section">
   <div class="container">
     <h2>Join Our Satisfied Clients</h2>
@@ -102,6 +309,7 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="footer">
 <div class="footer-top">
   <div class="container footer-grid">
@@ -147,5 +355,24 @@
 </footer>
 
 <script src="main.js"></script>
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('imgLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (e.target === document.getElementById('imgLightbox')) {
+    document.getElementById('imgLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('imgLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+</script>
 </body>
 </html>

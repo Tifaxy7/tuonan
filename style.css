@@ -132,6 +132,16 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 6px 20px rgba(26,63,168,0.4);
 }
 
+/* WhatsApp buttons — always green */
+a.btn-primary[href*="wa.me"] {
+  background: #25D366;
+  box-shadow: 0 4px 15px rgba(37,211,102,0.35);
+}
+a.btn-primary[href*="wa.me"]:hover {
+  background: #1eb554;
+  box-shadow: 0 6px 20px rgba(37,211,102,0.45);
+}
+
 .btn-secondary {
   display: inline-block;
   border: 2px solid var(--white);

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yutong Buses | Tuonan Bus Export</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.brand-hero {
+  background: #0d2461;
+  padding: 7rem 0 3rem;
+  text-align: center;
+}
+.brand-hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.brand-hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: #fff;
+}
+.brand-hero p {
+  color: rgba(255,255,255,0.75);
+  font-size: 1.1rem;
+  max-width: 550px;
+}
+
+/* BUS LISTING */
+.bus-listing {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--light-gray);
+}
+.bus-listing:nth-child(even) { background: var(--off-white); }
+.bus-listing:nth-child(odd) { background: var(--white); }
+
+.bus-listing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+.bus-listing-img {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+.bus-listing-img img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+.bus-listing-info h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 1.5rem;
+}
+.specs-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 1rem;
+  display: block;
+}
+.specs-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+.specs-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--light-gray);
+  color: var(--text);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.specs-list li::before {
+  content: '•';
+  color: var(--blue);
+  font-weight: bold;
+}
+
+/* PHOTO GALLERY */
+.bus-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+}
+.bus-gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.bus-gallery img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* LIGHTBOX */
+.img-lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.img-lightbox.open { display: flex; }
+.img-lightbox img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.img-lightbox-close {
+  position: fixed;
+  top: 1.5rem; right: 1.5rem;
+  background: var(--blue);
+  color: white;
+  border: none;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+/* MORE SECTION */
+.more-section {
+  padding: 5rem 0;
+  background: var(--off-white);
+  text-align: center;
+}
+.more-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.more-section p { color: var(--gray); margin-bottom: 2.5rem; }
+.more-cta-box {
+  background: var(--blue);
+  padding: 3rem;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 3rem auto 0;
+  text-align: center;
+}
+.more-cta-box h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1rem;
+}
+.more-cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 1.5rem; }
+
+@media (max-width: 768px) {
+  .bus-listing-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .bus-gallery { grid-template-columns: repeat(2, 1fr); }
+  .bus-gallery img { height: 140px; }
+}
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="img-lightbox" id="imgLightbox" onclick="closeLightbox(event)">
+  <button class="img-lightbox-close" onclick="document.getElementById('imgLightbox').classList.remove('open')">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="logo.jpg" alt="Tuonan Bus Export Logo"></a>
+  <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="buses.html" class="active">Available Buses</a></li>
+    <li><a href="export.html">Export & Shipping</a></li>
+    <li><a href="spareparts.html">Spare Parts</a></li>
+    <li><a href="testimonials.html">Testimonials</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- BRAND HERO -->
+<div class="brand-hero">
+  <div class="brand-hero-inner">
+    <h1>Yutong Buses</h1>
+    <p>Reliable buses for long-distance, tourism, and commercial use</p>
+  </div>
+</div>
+
+<!-- BUS 1: ZK6120 -->
+<section class="bus-listing">
+  <div class="container">
+    <div class="bus-listing-grid">
+      <div class="bus-listing-img">
+        <img src="yt6120-main.jpg" alt="2023 Yutong ZK6120">
+      </div>
+      <div class="bus-listing-info">
+        <h2>2023 Yutong ZK6120</h2>
+        <span class="specs-title">Key Specifications</span>
+        <ul class="specs-list">
+          <li>Seating Capacity: 50 seats</li>
+          <li>Engine: Weichai 336HP</li>
+          <li>Emission Standard: National VI</li>
+          <li>Mileage: 100,000 km</li>
+          <li>Usage: Company commuter vehicle</li>
+          <li>Condition: Well maintained</li>
+          <li>Documentation: Official operation records available</li>
+          <li>Stock available: 40</li>
+        </ul>
+        <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%202023%20Yutong%20ZK6120" class="btn-primary" target="_blank">💬 Enquire on WhatsApp</a>
+      </div>
+    </div>
+    <div class="bus-gallery">
+      <img src="yt6120-fleet.jpg" alt="Fleet" onclick="openLightbox(this.src)">
+      <img src="yt6120-interior.jpg" alt="Interior seats" onclick="openLightbox(this.src)">
+      <img src="yt6120-cockpit.jpg" alt="Driver cockpit" onclick="openLightbox(this.src)">
+      <img src="yt6120-dashboard.jpg" alt="Dashboard" onclick="openLightbox(this.src)">
+      <img src="yt6120-stairs.jpg" alt="Entry stairs" onclick="openLightbox(this.src)">
+      <img src="yt6120-seats.jpg" alt="Seat detail" onclick="openLightbox(this.src)">
+      <img src="yt6120-luggage.jpg" alt="Luggage compartment" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+</section>
+
+<!-- BUS 2: ZK6120 Twin Tourist -->
+<section class="bus-listing">
+  <div class="container">
+    <div class="bus-listing-grid">
+      <div class="bus-listing-img">
+        <img src="yt-twin-main.jpg" alt="2023 Yutong ZK6120 Twin Tourist">
+      </div>
+      <div class="bus-listing-info">
+        <h2>2023 Yutong ZK6120 Twin Tourist</h2>
+        <span class="specs-title">Key Specifications</span>
+        <ul class="specs-list">
+          <li>Seating Capacity: 50 seats</li>
+          <li>Engine: Weichai 336HP</li>
+          <li>Emission Standard: National VI</li>
+          <li>Mileage: 100,000 km</li>
+          <li>Usage: Company commuter vehicle</li>
+          <li>Condition: Well maintained</li>
+          <li>Documentation: Official operation records available</li>
+          <li>Stock available: 30</li>
+        </ul>
+        <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%202023%20Yutong%20ZK6120%20Twin%20Tourist" class="btn-primary" target="_blank">💬 Enquire on WhatsApp</a>
+      </div>
+    </div>
+    <div class="bus-gallery">
+      <img src="yt-twin-side.jpg" alt="Side view" onclick="openLightbox(this.src)">
+      <img src="yt-twin-interior.jpg" alt="Interior" onclick="openLightbox(this.src)">
+      <img src="yt-twin-seats.jpg" alt="Seats" onclick="openLightbox(this.src)">
+      <img src="yt-twin-cockpit.jpg" alt="Cockpit" onclick="openLightbox(this.src)">
+      <img src="yt-twin-entry.jpg" alt="Entry" onclick="openLightbox(this.src)">
+      <img src="yt-twin-door.jpg" alt="Door" onclick="openLightbox(this.src)">
+      <img src="yt-twin-engine.jpg" alt="Engine" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+</section>
+
+<!-- BUS 3: ZK6126 -->
+<section class="bus-listing">
+  <div class="container">
+    <div class="bus-listing-grid">
+      <div class="bus-listing-img">
+        <img src="yt6126-main.jpg" alt="Yutong ZK6126">
+      </div>
+      <div class="bus-listing-info">
+        <h2>Yutong ZK6126</h2>
+        <span class="specs-title">Key Specifications</span>
+        <ul class="specs-list">
+          <li>Seating Capacity: 59 seats</li>
+          <li>Engine: Weichai WP10.375E41 — 375HP</li>
+          <li>Dimensions: 12000×2550×3955mm</li>
+          <li>Max Power: 276 kW</li>
+          <li>Max Weight: 18,000 kg</li>
+          <li>Emission Standard: National VI</li>
+          <li>Usage: Company commuter vehicle</li>
+          <li>Condition: Well maintained</li>
+          <li>Documentation: Official operation records available</li>
+        </ul>
+        <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%20Yutong%20ZK6126" class="btn-primary" target="_blank">💬 Enquire on WhatsApp</a>
+      </div>
+    </div>
+    <div class="bus-gallery">
+      <img src="yt6126-side.jpg" alt="Side view" onclick="openLightbox(this.src)">
+      <img src="yt6126-seats.jpg" alt="Interior seats" onclick="openLightbox(this.src)">
+      <img src="yt6126-seats2.jpg" alt="Seat rows" onclick="openLightbox(this.src)">
+      <img src="yt6126-engine.jpg" alt="Engine" onclick="openLightbox(this.src)">
+      <img src="yt6126-engine2.jpg" alt="Engine detail" onclick="openLightbox(this.src)">
+      <img src="yt6126-luggage.jpg" alt="Luggage compartment" onclick="openLightbox(this.src)">
+      <img src="yt6126-plate.jpg" alt="Manufacturer plate" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+</section>
+
+<!-- BUS 4: Yutong Diesel 12-Meter -->
+<section class="bus-listing">
+  <div class="container">
+    <div class="bus-listing-grid">
+      <div class="bus-listing-img">
+        <img src="yt-diesel-main.jpg" alt="Yutong Diesel 12-Meter">
+      </div>
+      <div class="bus-listing-info">
+        <h2>Yutong Diesel 12-Meter City Bus</h2>
+        <span class="specs-title">Key Specifications</span>
+        <ul class="specs-list">
+          <li>Engine: Yuchai 260HP</li>
+          <li>Length: 12 Meters</li>
+          <li>Type: City / Urban Transit Bus</li>
+          <li>Condition: Well maintained</li>
+          <li>Documentation: Official operation records available</li>
+          <li>Stock available: 20</li>
+        </ul>
+        <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%20Yutong%20Diesel%2012-Meter" class="btn-primary" target="_blank">💬 Enquire on WhatsApp</a>
+      </div>
+    </div>
+    <div class="bus-gallery">
+      <img src="yt-diesel-side.jpg" alt="Side view" onclick="openLightbox(this.src)">
+      <img src="yt-diesel-rear.jpg" alt="Rear view" onclick="openLightbox(this.src)">
+      <img src="yt-diesel-interior.jpg" alt="Interior" onclick="openLightbox(this.src)">
+      <img src="yt-diesel-interior2.jpg" alt="Interior detail" onclick="openLightbox(this.src)">
+      <img src="yt-diesel-cockpit.jpg" alt="Driver cockpit" onclick="openLightbox(this.src)">
+      <img src="yt-diesel-cockpit2.jpg" alt="Dashboard" onclick="openLightbox(this.src)">
+      <img src="yt-diesel-engine.jpg" alt="Engine" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+</section>
+
+<!-- MORE SECTION -->
+<section class="more-section">
+  <div class="container">
+    <h2>And A Lot More</h2>
+    <p>We have many more Yutong models available. Contact us with your requirements.</p>
+    <div class="bus-gallery" style="max-width:1000px; margin:0 auto; grid-template-columns: repeat(4,1fr);">
+      <img src="more1.jpg" alt="More buses" onclick="openLightbox(this.src)">
+      <img src="more2.jpg" alt="More buses" onclick="openLightbox(this.src)">
+      <img src="more3.jpg" alt="More buses" onclick="openLightbox(this.src)">
+      <img src="more4.jpg" alt="More buses" onclick="openLightbox(this.src)">
+      <img src="more5.jpg" alt="More buses" onclick="openLightbox(this.src)">
+      <img src="more6.jpg" alt="More buses" onclick="openLightbox(this.src)">
+      <img src="more7.jpg" alt="More buses" onclick="openLightbox(this.src)">
+      <img src="more8.jpg" alt="More buses" onclick="openLightbox(this.src)">
+    </div>
+    <div class="more-cta-box">
+      <h3>Looking for a Specific Model?</h3>
+      <p>We have access to many more Yutong models not listed here. Tell us what you need and we'll find it.</p>
+      <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20looking%20for%20a%20specific%20Yutong%20bus%20model" class="btn-white" target="_blank">💬 Contact Us on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-top">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>Tuonan Bus Export</h4>
+      <p>Tuonan specializes in exporting new and certified used commercial buses from China to global markets with transparency and reliability.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="buses.html">Available Buses</a></li>
+        <li><a href="export.html">Export & Shipping</a></li>
+        <li><a href="spareparts.html">Spare Parts</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li>New Commercial Bus Export</li>
+        <li>Certified Used Bus Supply</li>
+        <li>Pre-Shipment Inspection</li>
+        <li>International Logistics</li>
+        <li>Export Documentation & Compliance</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacts Information</h4>
+      <ul>
+        <li>📞 +8613966687331</li>
+        <li>✉️ tuonanotificlal@163.com</li>
+        <li>📍 拓南二手客车全球批发基地<br>Anhui, China</li>
+      </ul>
+      <a href="https://wa.me/8613966687331" class="whatsapp-btn" target="_blank">💬 WhatsApp Us</a>
+    </div>
+  </div>
+</div>
+<div class="footer-bottom">
+  <p>© 2025 Anhui Tuonan Automobile Service Co., Ltd. All rights reserved.</p>
+</div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('imgLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (e.target === document.getElementById('imgLightbox')) {
+    document.getElementById('imgLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('imgLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+</script>
+</body>
+</html>

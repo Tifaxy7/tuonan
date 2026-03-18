@@ -8,84 +8,176 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-/* LIGHTBOX */
-.lightbox {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.92);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  animation: fadeIn 0.3s ease;
+.buses-hero {
+  background: var(--white);
+  padding: 8rem 0 4rem;
 }
-.lightbox.active { display: flex; }
-.lightbox-inner {
-  background: #fff;
-  border-radius: 10px;
-  max-width: 900px;
-  width: 100%;
+.buses-hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  overflow: hidden;
-  max-height: 90vh;
+  gap: 4rem;
+  align-items: center;
+}
+.buses-hero-text h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+.buses-hero-text p {
+  color: var(--gray);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  max-width: 420px;
+}
+.buses-hero-img {
   position: relative;
 }
-.lightbox-img {
-  background: #f0f0f0;
-  overflow: hidden;
-}
-.lightbox-img img {
+.buses-hero-img img {
   width: 100%;
-  height: 100%;
+  height: 380px;
   object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
 }
-.lightbox-body {
-  padding: 2.5rem;
-  overflow-y: auto;
+.hero-badge {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 2rem;
+  background: var(--blue);
+  color: white;
+  padding: 1.2rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(26,63,168,0.4);
 }
-.lightbox-body h2 {
+.hero-badge .num {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.6rem;
+  font-size: 2.5rem;
   font-weight: 800;
-  color: #1a1a2e;
+  line-height: 1;
+  display: block;
+}
+.hero-badge .label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* FEATURED BUSES */
+.featured-section {
+  padding: 6rem 0;
+  background: #e8f0fe;
+}
+.featured-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  text-align: center;
+  color: var(--dark);
   margin-bottom: 0.5rem;
 }
-.lightbox-body .bus-tag { margin-bottom: 1rem; }
-.lightbox-body p { color: #666; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
-.lightbox-specs {
+.featured-subtitle {
+  text-align: center;
+  color: var(--gray);
+  margin-bottom: 3rem;
+}
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.featured-card {
+  background: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.featured-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 35px rgba(0,0,0,0.12);
+}
+.featured-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.featured-card:hover img { transform: scale(1.03); }
+.featured-card-body {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.featured-card-body h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.3rem;
+  text-decoration: underline;
+}
+.featured-card-body p {
+  color: var(--gray);
+  font-size: 0.88rem;
+}
+.arrow-icon {
+  font-size: 1.3rem;
+  color: var(--blue);
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+/* GALLERY */
+.gallery-section-buses {
+  padding: 6rem 0;
+  background: var(--white);
+}
+.gallery-section-buses h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  text-align: center;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+}
+.gallery-section-buses p {
+  text-align: center;
+  color: var(--gray);
+  margin-bottom: 3rem;
+}
+.gallery-masonry {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin-bottom: 2rem;
-  padding: 1rem 0;
-  border-top: 1px solid #eef1f6;
-  border-bottom: 1px solid #eef1f6;
 }
-.lightbox-spec strong { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 0.2rem; }
-.lightbox-spec span { font-weight: 600; color: #1a1a2e; font-size: 0.95rem; }
-.lightbox-close {
-  position: absolute;
-  top: 1rem; right: 1rem;
-  background: #1a3fa8;
-  color: #fff;
-  border: none;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  transition: background 0.3s;
+.gallery-masonry-wide {
+  grid-column: span 2;
 }
-.lightbox-close:hover { background: #122d7a; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@media (max-width: 650px) {
-  .lightbox-inner { grid-template-columns: 1fr; }
-  .lightbox-img { height: 220px; }
+.gallery-masonry img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.gallery-masonry-wide img { height: 320px; }
+
+@media (max-width: 768px) {
+  .buses-hero-grid { grid-template-columns: 1fr; }
+  .featured-grid { grid-template-columns: 1fr; }
+  .gallery-masonry { grid-template-columns: 1fr; }
+  .gallery-masonry-wide { grid-column: span 1; }
+  .buses-hero { padding: 7rem 0 3rem; }
 }
 </style>
 </head>
@@ -105,169 +197,96 @@
   </ul>
 </nav>
 
-<div class="page-hero">
-  <div class="container">
-    <div class="section-label">Our Fleet</div>
-    <h1>Available <span>Buses</span></h1>
-    <p>New and certified used buses ready for export worldwide. Click any bus to see full details.</p>
-  </div>
-</div>
-
-<section class="buses-section">
-  <div class="container">
-    <div class="buses-grid">
-
-      <div class="bus-card" onclick="openLightbox('bus1')">
-        <div class="bus-card-img"><img src="bus1.jpg" alt="Yutong Coach"></div>
-        <div class="bus-card-body">
-          <span class="bus-tag">New</span>
-          <h3>Yutong Luxury Coach</h3>
-          <p>Premium white Yutong coach in excellent condition, ideal for long-distance and tourism routes.</p>
-          <div class="bus-specs">
-            <div class="spec"><strong>Capacity</strong>45–50 seats</div>
-            <div class="spec"><strong>Condition</strong>Brand New</div>
-          </div>
-          <span class="btn-primary" style="cursor:pointer; display:inline-block">View Details</span>
-        </div>
-      </div>
-
-      <div class="bus-card" onclick="openLightbox('bus2')">
-        <div class="bus-card-img"><img src="bus2.jpg" alt="Takutu Intercity Bus"></div>
-        <div class="bus-card-body">
-          <span class="bus-tag">Used</span>
-          <h3>Intercity Coach</h3>
-          <p>Certified used intercity coach with comfortable seating, great for regional passenger routes.</p>
-          <div class="bus-specs">
-            <div class="spec"><strong>Capacity</strong>39–45 seats</div>
-            <div class="spec"><strong>Condition</strong>Certified Used</div>
-          </div>
-          <span class="btn-primary" style="cursor:pointer; display:inline-block">View Details</span>
-        </div>
-      </div>
-
-      <div class="bus-card" onclick="openLightbox('bus3')">
-        <div class="bus-card-img"><img src="bus3.jpg" alt="City Bus Fleet"></div>
-        <div class="bus-card-body">
-          <span class="bus-tag">Used</span>
-          <h3>City Bus Fleet</h3>
-          <p>White and blue city buses ideal for urban public transport. Available in bulk quantities.</p>
-          <div class="bus-specs">
-            <div class="spec"><strong>Capacity</strong>50–60 seats</div>
-            <div class="spec"><strong>Condition</strong>Certified Used</div>
-          </div>
-          <span class="btn-primary" style="cursor:pointer; display:inline-block">View Details</span>
-        </div>
-      </div>
-
-      <div class="bus-card" onclick="openLightbox('bus4')">
-        <div class="bus-card-img"><img src="bus4.jpg" alt="Yutong Blue Buses"></div>
-        <div class="bus-card-body">
-          <span class="bus-tag">Used</span>
-          <h3>Yutong Medium Coach</h3>
-          <p>Blue Yutong medium coaches directly from the Tuonan export yard. Ready for immediate shipment.</p>
-          <div class="bus-specs">
-            <div class="spec"><strong>Capacity</strong>35–40 seats</div>
-            <div class="spec"><strong>Condition</strong>Certified Used</div>
-          </div>
-          <span class="btn-primary" style="cursor:pointer; display:inline-block">View Details</span>
-        </div>
-      </div>
-
+<!-- HERO -->
+<section class="buses-hero">
+  <div class="container buses-hero-grid">
+    <div class="buses-hero-text">
+      <h1>Buses for Every Journey</h1>
+      <p>From cozy 30-seaters to spacious luxury coaches, find the perfect bus for your group's needs.</p>
+      <a href="#featured" class="btn-primary">See Buses</a>
     </div>
-
-    <div style="text-align:center; margin-top:4rem; padding:3rem; background:var(--off-white); border-radius:8px;">
-      <h3 style="font-family:'Montserrat',sans-serif; font-size:1.6rem; font-weight:800; margin-bottom:1rem; color:var(--dark);">Don't See What You Need?</h3>
-      <p style="color:var(--gray); margin-bottom:2rem;">We have access to many more buses. Contact us with your requirements and we'll find the right match.</p>
-      <a href="https://wa.me/8613966687331?text=Hello,%20I%20have%20a%20specific%20bus%20requirement" class="btn-primary" target="_blank">Tell Us What You Need</a>
+    <div class="buses-hero-img">
+      <img src="hero.jpg" alt="Bus fleet aerial view">
+      <div class="hero-badge">
+        <span class="num">750+</span>
+        <span class="label">Buses</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- LIGHTBOXES -->
-<div class="lightbox" id="lb-bus1" onclick="closeLightbox(event, 'bus1')">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" onclick="closeLightboxBtn('bus1')">✕</button>
-    <div class="lightbox-img"><img src="bus1.jpg" alt="Yutong Luxury Coach"></div>
-    <div class="lightbox-body">
-      <span class="bus-tag">New</span>
-      <h2>Yutong Luxury Coach</h2>
-      <p>Premium white Yutong luxury coach, perfect for long-distance intercity routes and tourism operations. Features comfortable reclining seats, air conditioning, and ample luggage storage.</p>
-      <div class="lightbox-specs">
-        <div class="lightbox-spec"><strong>Brand</strong><span>Yutong</span></div>
-        <div class="lightbox-spec"><strong>Condition</strong><span>Brand New</span></div>
-        <div class="lightbox-spec"><strong>Capacity</strong><span>45–50 Seats</span></div>
-        <div class="lightbox-spec"><strong>Engine</strong><span>Diesel</span></div>
-        <div class="lightbox-spec"><strong>Use</strong><span>Long Distance / Tourism</span></div>
-        <div class="lightbox-spec"><strong>AC</strong><span>Yes</span></div>
-      </div>
-      <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%20Yutong%20Luxury%20Coach" class="btn-primary" target="_blank">Enquire on WhatsApp</a>
+<!-- FEATURED BUSES -->
+<section class="featured-section" id="featured">
+  <div class="container">
+    <h2>Featured Buses</h2>
+    <p class="featured-subtitle">Selected models with specs and images.</p>
+    <div class="featured-grid">
+
+      <a href="yutong.html" class="featured-card">
+        <img src="yt6120-main.jpg" alt="Yutong Bus">
+        <div class="featured-card-body">
+          <div>
+            <h3>Yutong Bus</h3>
+            <p>Click on Yutong Bus for more options</p>
+          </div>
+          <span class="arrow-icon">→</span>
+        </div>
+      </a>
+
+      <a href="toyota.html" class="featured-card">
+        <img src="bus2.jpg" alt="Toyota Coach">
+        <div class="featured-card-body">
+          <div>
+            <h3>Toyota Coach</h3>
+            <p>Click on Toyota for more options</p>
+          </div>
+          <span class="arrow-icon">→</span>
+        </div>
+      </a>
+
+      <a href="higer.html" class="featured-card">
+        <img src="bus1.jpg" alt="Higer Bus">
+        <div class="featured-card-body">
+          <div>
+            <h3>Higer Bus</h3>
+            <p>Click on Higer Bus for more options</p>
+          </div>
+          <span class="arrow-icon">→</span>
+        </div>
+      </a>
+
+      <a href="contact.html" class="featured-card">
+        <img src="bus4.jpg" alt="Request Info">
+        <div class="featured-card-body">
+          <div>
+            <h3>Request Info</h3>
+            <p>Click to get full bus details.</p>
+          </div>
+          <span class="arrow-icon">→</span>
+        </div>
+      </a>
+
     </div>
   </div>
-</div>
+</section>
 
-<div class="lightbox" id="lb-bus2" onclick="closeLightbox(event, 'bus2')">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" onclick="closeLightboxBtn('bus2')">✕</button>
-    <div class="lightbox-img"><img src="bus2.jpg" alt="Intercity Coach"></div>
-    <div class="lightbox-body">
-      <span class="bus-tag">Used</span>
-      <h2>Intercity Coach</h2>
-      <p>Certified used intercity coach in great working condition. Comfortable seating and reliable engine make it ideal for regional passenger routes across Africa.</p>
-      <div class="lightbox-specs">
-        <div class="lightbox-spec"><strong>Condition</strong><span>Certified Used</span></div>
-        <div class="lightbox-spec"><strong>Capacity</strong><span>39–45 Seats</span></div>
-        <div class="lightbox-spec"><strong>Engine</strong><span>Diesel</span></div>
-        <div class="lightbox-spec"><strong>Use</strong><span>Intercity Routes</span></div>
-        <div class="lightbox-spec"><strong>Inspection</strong><span>Pre-Shipment Done</span></div>
-        <div class="lightbox-spec"><strong>AC</strong><span>Yes</span></div>
-      </div>
-      <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%20Intercity%20Coach" class="btn-primary" target="_blank">Enquire on WhatsApp</a>
+<!-- GALLERY -->
+<section class="gallery-section-buses">
+  <div class="container">
+    <h2>Gallery</h2>
+    <p>A glimpse of our buses ready for export.</p>
+    <div class="gallery-masonry">
+      <div><img src="hero.jpg" alt="Bus yard aerial"></div>
+      <div><img src="bus4.jpg" alt="Buses at yard"></div>
+      <div class="gallery-masonry-wide"><img src="bus3.jpg" alt="City bus fleet"></div>
+      <div><img src="yt-twin-interior.jpg" alt="Bus interior"></div>
+      <div><img src="yt6120-interior.jpg" alt="Luxury seats"></div>
+      <div class="gallery-masonry-wide"><img src="about-hero.jpg" alt="Bus lineup"></div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="lightbox" id="lb-bus3" onclick="closeLightbox(event, 'bus3')">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" onclick="closeLightboxBtn('bus3')">✕</button>
-    <div class="lightbox-img"><img src="bus3.jpg" alt="City Bus Fleet"></div>
-    <div class="lightbox-body">
-      <span class="bus-tag">Used</span>
-      <h2>City Bus Fleet</h2>
-      <p>White and blue city buses available in bulk. Ideal for urban public transport operators. These buses have been thoroughly inspected and are ready for export. Bulk discounts available.</p>
-      <div class="lightbox-specs">
-        <div class="lightbox-spec"><strong>Condition</strong><span>Certified Used</span></div>
-        <div class="lightbox-spec"><strong>Capacity</strong><span>50–60 Seats</span></div>
-        <div class="lightbox-spec"><strong>Engine</strong><span>Diesel / CNG</span></div>
-        <div class="lightbox-spec"><strong>Use</strong><span>Urban Public Transport</span></div>
-        <div class="lightbox-spec"><strong>Availability</strong><span>Bulk Orders</span></div>
-        <div class="lightbox-spec"><strong>Inspection</strong><span>Pre-Shipment Done</span></div>
-      </div>
-      <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%20City%20Bus%20Fleet" class="btn-primary" target="_blank">Enquire on WhatsApp</a>
-    </div>
-  </div>
-</div>
-
-<div class="lightbox" id="lb-bus4" onclick="closeLightbox(event, 'bus4')">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" onclick="closeLightboxBtn('bus4')">✕</button>
-    <div class="lightbox-img"><img src="bus4.jpg" alt="Yutong Medium Coach"></div>
-    <div class="lightbox-body">
-      <span class="bus-tag">Used</span>
-      <h2>Yutong Medium Coach</h2>
-      <p>Blue Yutong medium coaches photographed directly at the Tuonan export yard in Anhui, China. Ready for immediate inspection and shipment. A reliable and popular choice for African operators.</p>
-      <div class="lightbox-specs">
-        <div class="lightbox-spec"><strong>Brand</strong><span>Yutong</span></div>
-        <div class="lightbox-spec"><strong>Condition</strong><span>Certified Used</span></div>
-        <div class="lightbox-spec"><strong>Capacity</strong><span>35–40 Seats</span></div>
-        <div class="lightbox-spec"><strong>Engine</strong><span>Diesel</span></div>
-        <div class="lightbox-spec"><strong>Location</strong><span>Anhui, China</span></div>
-        <div class="lightbox-spec"><strong>Ready</strong><span>Immediate Export</span></div>
-      </div>
-      <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%20Yutong%20Medium%20Coach" class="btn-primary" target="_blank">Enquire on WhatsApp</a>
-    </div>
-  </div>
-</div>
-
+<!-- FOOTER -->
 <footer class="footer">
 <div class="footer-top">
   <div class="container footer-grid">
@@ -313,28 +332,5 @@
 </footer>
 
 <script src="main.js"></script>
-<script>
-function openLightbox(id) {
-  document.getElementById('lb-' + id).classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeLightboxBtn(id) {
-  document.getElementById('lb-' + id).classList.remove('active');
-  document.body.style.overflow = '';
-}
-function closeLightbox(e, id) {
-  if (e.target === document.getElementById('lb-' + id)) {
-    closeLightboxBtn(id);
-  }
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.lightbox.active').forEach(lb => {
-      lb.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  }
-});
-</script>
 </body>
 </html>

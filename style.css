@@ -454,11 +454,11 @@ section h2 {
 
 /* ===== FOOTER ===== */
 .footer {
-  background: #0d2461;
+  background: #071540;
 }
 
 .footer-top {
-  background: #1a3fa8;
+  background: #0d2461;
   padding: 5rem 0 3rem;
 }
 
@@ -507,7 +507,7 @@ section h2 {
 .whatsapp-btn:hover { background: #1ebe5d; transform: translateY(-2px); }
 
 .footer-bottom {
-  background: #071540;
+  background: #020c2e;
   padding: 1.5rem 2rem;
   text-align: center;
   color: rgba(255,255,255,0.4);

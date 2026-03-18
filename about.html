@@ -117,7 +117,7 @@
 /* LOCATION */
 .location-section {
   padding: 6rem 0;
-  background: #0d2461;
+  background: #16325c;
 }
 .location-grid {
   display: grid;
@@ -133,9 +133,7 @@
   margin-bottom: 1rem;
 }
 .location-text p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; }
-.location-detail {
-  margin-bottom: 1.5rem;
-}
+.location-detail { margin-bottom: 1.5rem; }
 .location-detail h4 {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.78rem;
@@ -155,11 +153,36 @@
   overflow: hidden;
   box-shadow: 0 8px 40px rgba(0,0,0,0.3);
   height: 350px;
+  position: relative;
+  cursor: pointer;
 }
-.location-map iframe {
+.location-map img {
   width: 100%;
   height: 100%;
-  border: none;
+  object-fit: cover;
+  display: block;
+}
+.map-click-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(7,21,64,0.95), transparent);
+  padding: 2rem 1.5rem 1.2rem;
+  text-align: center;
+}
+.map-click-overlay p {
+  color: white;
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.map-click-overlay span {
+  color: #7eb8ff;
+  font-weight: 600;
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 @media (max-width: 900px) {
@@ -254,13 +277,12 @@
         <br>
         <a href="https://wa.me/8613966687331" class="btn-primary" target="_blank">💬 WhatsApp Us</a>
       </div>
-      <div class="location-map">
-        <a href="https://map.baidu.com/search/拓南二手客车全球批发基地/@13003200,3638900,16z" target="_blank" style="display:block; width:100%; height:100%; position:relative;">
-          <img src="https://staticmap.openstreetmap.de/staticmap.php?center=31.878,117.226&zoom=15&size=600x350&markers=31.878,117.226,red" alt="Tuonan Location Map" style="width:100%;height:100%;object-fit:cover;">
-          <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(13,36,97,0.85);padding:1rem;text-align:center;">
-            <p style="color:white;margin:0;font-size:0.9rem;">📍 安徽省合肥市庐阳区阜阳北路辅路东 — <span style="color:#7eb8ff;">Click to open in Baidu Maps</span></p>
-          </div>
-        </a>
+      <div class="location-map" onclick="window.open('https://map.baidu.com/search/拓南二手客车全球批发基地/@13003200,3638900,16z','_blank')">
+        <img src="mapimg.jpg" alt="Tuonan Location - Click to open in Baidu Maps">
+        <div class="map-click-overlay">
+          <p>📍 安徽省合肥市庐阳区阜阳北路辅路东</p>
+          <span>👆 Tap to open in Baidu Maps</span>
+        </div>
       </div>
     </div>
   </div>

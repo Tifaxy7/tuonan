@@ -5,10 +5,222 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Export & Shipping | Tuonan Bus Export</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+.export-hero {
+  position: relative;
+  height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+.export-hero img.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+.export-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(5,15,40,0.62);
+}
+.export-hero-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 0 1rem;
+}
+.export-hero-content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.export-hero-content p {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.82);
+  max-width: 540px;
+  margin: 0 auto 2rem;
+}
+.process-section {
+  padding: 6rem 0;
+  background: #f4f6fb;
+}
+.process-section .section-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.process-img {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+}
+.process-img img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  display: block;
+}
+.process-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+.process-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 0.4rem;
+}
+.process-section .sub { color: var(--gray); margin-bottom: 2.5rem; font-size: 0.95rem; }
+.process-step { display: flex; gap: 1.2rem; align-items: flex-start; }
+.p-step-num {
+  background: var(--blue);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 0.82rem;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.process-step h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.25rem;
+}
+.process-step p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; margin: 0; }
+
+.docs-section { padding: 5rem 0; background: var(--white); }
+.docs-section h2, .gallery-section h2, .faq-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.faq-section h2 { text-align: left; }
+.sub-center { color: var(--gray); text-align: center; margin-bottom: 3rem; }
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.doc-card {
+  background: #f4f6fb;
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  border-left: 4px solid var(--blue);
+}
+.doc-card .doc-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+.doc-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.4rem;
+}
+.doc-card p { font-size: 0.87rem; color: var(--gray); line-height: 1.6; margin: 0; }
+
+.gallery-section { padding: 5rem 0; background: var(--off-white); }
+.export-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.gal-item {
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+.gal-item img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.gal-item:hover img { transform: scale(1.05); }
+.gal-item.wide { grid-column: span 2; }
+.gal-item.wide img { height: 310px; }
+
+.faq-section { padding: 5rem 0; background: var(--white); }
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem 5rem;
+  margin-top: 2.5rem;
+}
+.faq-item h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+}
+.faq-item p { font-size: 0.9rem; color: var(--gray); line-height: 1.7; margin: 0; }
+
+.img-lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.img-lightbox.open { display: flex; }
+.img-lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 8px; }
+.img-lightbox-close {
+  position: fixed; top: 1.5rem; right: 1.5rem;
+  background: var(--blue); color: white; border: none;
+  width: 42px; height: 42px; border-radius: 50%;
+  font-size: 1.3rem; cursor: pointer; z-index: 10000;
+}
+
+@media (max-width: 900px) {
+  .process-section .section-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .process-img img { height: 280px; }
+  .docs-grid { grid-template-columns: 1fr 1fr; }
+  .export-gallery { grid-template-columns: 1fr 1fr; }
+  .gal-item.wide { grid-column: span 2; }
+  .faq-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+@media (max-width: 600px) {
+  .export-hero { height: 420px; }
+  .docs-grid { grid-template-columns: 1fr; }
+  .export-gallery { grid-template-columns: 1fr; }
+  .gal-item.wide { grid-column: span 1; }
+  .gal-item.wide img { height: 220px; }
+}
+</style>
 </head>
 <body>
+
+<div class="img-lightbox" id="imgLightbox" onclick="closeLightbox(event)">
+  <button class="img-lightbox-close" onclick="document.getElementById('imgLightbox').classList.remove('open')">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 <nav class="navbar">
   <a href="index.html" class="logo"><img src="logo.jpg" alt="Tuonan Bus Export Logo"></a>
@@ -24,85 +236,159 @@
   </ul>
 </nav>
 
-<div class="page-hero">
-  <div class="container">
-    <div class="section-label">How It Works</div>
-    <h1>Export & <span>Shipping</span></h1>
-    <p>From your order to delivery — a seamless, transparent process</p>
+<div class="export-hero">
+  <img src="export-hero.jpg" alt="Buses loaded at port" class="hero-bg">
+  <div class="export-hero-content">
+    <h1>Global Bus Export &amp;<br>Shipping</h1>
+    <p>Exporting quality buses from China to Africa and beyond — with care and speed</p>
+    <a href="https://wa.me/8613966687331?text=Hello,%20I%20want%20to%20start%20an%20export%20order" class="btn-primary" target="_blank">💬 Contact Us</a>
   </div>
 </div>
 
-<section class="export-section">
+<section class="process-section">
   <div class="container">
-    <div class="section-label">The Process</div>
-    <h2>How We Export Your Buses</h2>
-    <div class="process-steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h3>Inquiry & Quote</h3>
-        <p>Contact us with your bus requirements — type, quantity, budget, and destination. We'll respond with a detailed quote within 24 hours.</p>
+    <div class="section-inner">
+      <div class="process-img">
+        <img src="export-process.jpg" alt="Bus being loaded by crane at night">
       </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h3>Selection & Agreement</h3>
-        <p>We present available buses matching your requirements with full details, photos, and pricing. Once you're satisfied, we formalize the agreement.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h3>Pre-Shipment Inspection</h3>
-        <p>Every bus undergoes a thorough inspection before shipment. We can also arrange third-party inspection for your peace of mind.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <h3>Documentation</h3>
-        <p>We handle all export documentation including the Bill of Lading, Certificate of Origin, Commercial Invoice, and Packing List.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">05</div>
-        <h3>Shipping</h3>
-        <p>Buses are loaded and shipped via trusted freight partners. We coordinate with shipping lines for the most efficient routes to your port.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">06</div>
-        <h3>Delivery & Support</h3>
-        <p>We track your shipment and keep you updated throughout. Once delivered, our after-sales support team is always available.</p>
+      <div>
+        <h2>Our Process</h2>
+        <p class="sub">Step-by-step from bus selection to delivery at your port</p>
+        <div class="process-steps-list">
+          <div class="process-step">
+            <div class="p-step-num">01</div>
+            <div>
+              <h3>Inquiry & Quote</h3>
+              <p>Contact us with your requirements — type, quantity, budget, and destination. We respond with a detailed quote within 24 hours.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="p-step-num">02</div>
+            <div>
+              <h3>Selection & Agreement</h3>
+              <p>We present available buses with full details, photos, and pricing. Once satisfied, we formalize the agreement.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="p-step-num">03</div>
+            <div>
+              <h3>Pre-Shipment Inspection</h3>
+              <p>Every bus undergoes a thorough inspection. Third-party inspection can also be arranged for your peace of mind.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="p-step-num">04</div>
+            <div>
+              <h3>Port Loading & Shipping</h3>
+              <p>Buses are loaded and shipped via trusted freight partners using the most efficient routes to your destination port.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="p-step-num">05</div>
+            <div>
+              <h3>Delivery & After-Sales Support</h3>
+              <p>We track your shipment and keep you updated throughout. Our team remains available after delivery.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div style="margin-top: 5rem;">
-      <div class="section-label">Documentation We Handle</div>
-      <h2>Full Export Compliance</h2>
-      <div class="why-grid">
-        <div class="why-card">
-          <div class="why-icon">📄</div>
-          <h3>Bill of Lading</h3>
-          <p>Official shipping document confirming receipt of cargo and terms of transport to your destination port.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">🏷️</div>
-          <h3>Certificate of Origin</h3>
-          <p>Certified document confirming the buses are manufactured in China, required for customs clearance in most countries.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">💼</div>
-          <h3>Commercial Invoice</h3>
-          <p>Detailed invoice listing the buses, quantities, values, and transaction terms for customs and payment purposes.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">📦</div>
-          <h3>Packing List</h3>
-          <p>Comprehensive list of all items in the shipment including spare parts and accessories included with the buses.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">🔍</div>
-          <h3>Inspection Certificate</h3>
-          <p>Third-party or in-house inspection report confirming the condition and specifications of each bus before shipping.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">🌍</div>
-          <h3>Customs Assistance</h3>
-          <p>We assist with customs documentation and can advise on import requirements for your specific destination country.</p>
-        </div>
+<section class="docs-section">
+  <div class="container">
+    <h2>Full Export Compliance</h2>
+    <p class="sub-center">We handle all documentation so you can focus on your business</p>
+    <div class="docs-grid">
+      <div class="doc-card">
+        <div class="doc-icon">📄</div>
+        <h3>Bill of Lading</h3>
+        <p>Official shipping document confirming receipt of cargo and terms of transport to your destination port.</p>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon">🏷️</div>
+        <h3>Certificate of Origin</h3>
+        <p>Certified document confirming the buses are manufactured in China, required for customs clearance in most countries.</p>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon">💼</div>
+        <h3>Commercial Invoice</h3>
+        <p>Detailed invoice listing buses, quantities, values, and transaction terms for customs and payment purposes.</p>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon">📦</div>
+        <h3>Packing List</h3>
+        <p>Comprehensive list of all items in the shipment including spare parts and accessories included with the buses.</p>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon">🔍</div>
+        <h3>Inspection Certificate</h3>
+        <p>Third-party or in-house inspection report confirming the condition and specifications of each bus before shipping.</p>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon">🌍</div>
+        <h3>Customs Assistance</h3>
+        <p>We advise on import requirements for your destination country and assist with all customs documentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="container">
+    <h2>Gallery</h2>
+    <p class="sub-center">Snapshots of our buses ready for export worldwide</p>
+    <div class="export-gallery">
+      <div class="gal-item wide">
+        <img src="export-gallery4.jpg" alt="Buses loaded on ship deck" onclick="openLightbox(this.src)">
+      </div>
+      <div class="gal-item">
+        <img src="export-gallery6.jpg" alt="Buses packed at port" onclick="openLightbox(this.src)">
+      </div>
+      <div class="gal-item">
+        <img src="export-gallery1.jpg" alt="Buses on ship deck" onclick="openLightbox(this.src)">
+      </div>
+      <div class="gal-item">
+        <img src="export-gallery2.jpg" alt="Bus being lifted by crane" onclick="openLightbox(this.src)">
+      </div>
+      <div class="gal-item wide">
+        <img src="export-gallery5.jpg" alt="Buses and trucks on ship" onclick="openLightbox(this.src)">
+      </div>
+      <div class="gal-item">
+        <img src="export-gallery3.jpg" alt="Bus hoisted by crane" onclick="openLightbox(this.src)">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="container">
+    <h2>FAQs</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>What is RORO shipping?</h3>
+        <p>RORO means Roll-On/Roll-Off — vehicles are driven directly onto the vessel, making it a cost-effective method for shipping buses.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How does container shipping work?</h3>
+        <p>Your bus is secured inside a shipping container, protecting it fully during transit. Ideal for smaller buses and minibuses.</p>
+      </div>
+      <div class="faq-item">
+        <h3>When should I choose bulk shipment?</h3>
+        <p>Bulk shipment is ideal when transporting multiple buses together — it reduces per-unit cost and streamlines delivery logistics.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Are there size or weight limits?</h3>
+        <p>Yes, each shipping method has specific size and weight restrictions. We'll advise the best method based on your bus specifications.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is insurance included?</h3>
+        <p>Insurance options are available to protect your shipment. We can arrange marine cargo insurance upon request.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How long does shipping usually take?</h3>
+        <p>Shipping times vary by method and destination but typically range from 2 to 6 weeks depending on your target port.</p>
       </div>
     </div>
   </div>
@@ -161,5 +447,24 @@
 </footer>
 
 <script src="main.js"></script>
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('imgLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (e.target === document.getElementById('imgLightbox')) {
+    document.getElementById('imgLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('imgLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+</script>
 </body>
 </html>

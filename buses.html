@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Available Buses | Tuonan Bus Export</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease;
+}
+.lightbox.active { display: flex; }
+.lightbox-inner {
+  background: #fff;
+  border-radius: 10px;
+  max-width: 900px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  max-height: 90vh;
+  position: relative;
+}
+.lightbox-img {
+  background: #f0f0f0;
+  overflow: hidden;
+}
+.lightbox-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lightbox-body {
+  padding: 2.5rem;
+  overflow-y: auto;
+}
+.lightbox-body h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+}
+.lightbox-body .bus-tag { margin-bottom: 1rem; }
+.lightbox-body p { color: #666; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+.lightbox-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid #eef1f6;
+  border-bottom: 1px solid #eef1f6;
+}
+.lightbox-spec strong { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 0.2rem; }
+.lightbox-spec span { font-weight: 600; color: #1a1a2e; font-size: 0.95rem; }
+.lightbox-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: #1a3fa8;
+  color: #fff;
+  border: none;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.3s;
+}
+.lightbox-close:hover { background: #122d7a; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 650px) {
+  .lightbox-inner { grid-template-columns: 1fr; }
+  .lightbox-img { height: 220px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="logo.jpg" alt="Tuonan Bus Export Logo"></a>
+  <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="buses.html" class="active">Available Buses</a></li>
+    <li><a href="export.html">Export & Shipping</a></li>
+    <li><a href="spareparts.html">Spare Parts</a></li>
+    <li><a href="testimonials.html">Testimonials</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="section-label">Our Fleet</div>
+    <h1>Available <span>Buses</span></h1>
+    <p>New and certified used buses ready for export worldwide. Click any bus to see full details.</p>
+  </div>
+</div>
+
+<section class="buses-section">
+  <div class="container">
+    <div class="buses-grid">
+
+      <div class="bus-card" onclick="openLightbox('bus1')">
+        <div class="bus-card-img"><img src="bus1.jpg" alt="Yutong Coach"></div>
+        <div class="bus-card-body">
+          <span class="bus-tag">New</span>
+          <h3>Yutong Luxury Coach</h3>
+          <p>Premium white Yutong coach in excellent condition, ideal for long-distance and tourism routes.</p>
+          <div class="bus-specs">
+            <div class="spec"><strong>Capacity</strong>45–50 seats</div>
+            <div class="spec"><strong>Condition</strong>Brand New</div>
+          </div>
+          <span class="btn-primary" style="cursor:pointer; display:inline-block">View Details</span>
+        </div>
+      </div>
+
+      <div class="bus-card" onclick="openLightbox('bus2')">
+        <div class="bus-card-img"><img src="bus2.jpg" alt="Takutu Intercity Bus"></div>
+        <div class="bus-card-body">
+          <span class="bus-tag">Used</span>
+          <h3>Intercity Coach</h3>
+          <p>Certified used intercity coach with comfortable seating, great for regional passenger routes.</p>
+          <div class="bus-specs">
+            <div class="spec"><strong>Capacity</strong>39–45 seats</div>
+            <div class="spec"><strong>Condition</strong>Certified Used</div>
+          </div>
+          <span class="btn-primary" style="cursor:pointer; display:inline-block">View Details</span>
+        </div>
+      </div>
+
+      <div class="bus-card" onclick="openLightbox('bus3')">
+        <div class="bus-card-img"><img src="bus3.jpg" alt="City Bus Fleet"></div>
+        <div class="bus-card-body">
+          <span class="bus-tag">Used</span>
+          <h3>City Bus Fleet</h3>
+          <p>White and blue city buses ideal for urban public transport. Available in bulk quantities.</p>
+          <div class="bus-specs">
+            <div class="spec"><strong>Capacity</strong>50–60 seats</div>
+            <div class="spec"><strong>Condition</strong>Certified Used</div>
+          </div>
+          <span class="btn-primary" style="cursor:pointer; display:inline-block">View Details</span>
+        </div>
+      </div>
+
+      <div class="bus-card" onclick="openLightbox('bus4')">
+        <div class="bus-card-img"><img src="bus4.jpg" alt="Yutong Blue Buses"></div>
+        <div class="bus-card-body">
+          <span class="bus-tag">Used</span>
+          <h3>Yutong Medium Coach</h3>
+          <p>Blue Yutong medium coaches directly from the Tuonan export yard. Ready for immediate shipment.</p>
+          <div class="bus-specs">
+            <div class="spec"><strong>Capacity</strong>35–40 seats</div>
+            <div class="spec"><strong>Condition</strong>Certified Used</div>
+          </div>
+          <span class="btn-primary" style="cursor:pointer; display:inline-block">View Details</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:4rem; padding:3rem; background:var(--off-white); border-radius:8px;">
+      <h3 style="font-family:'Montserrat',sans-serif; font-size:1.6rem; font-weight:800; margin-bottom:1rem; color:var(--dark);">Don't See What You Need?</h3>
+      <p style="color:var(--gray); margin-bottom:2rem;">We have access to many more buses. Contact us with your requirements and we'll find the right match.</p>
+      <a href="https://wa.me/8613966687331?text=Hello,%20I%20have%20a%20specific%20bus%20requirement" class="btn-primary" target="_blank">Tell Us What You Need</a>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOXES -->
+<div class="lightbox" id="lb-bus1" onclick="closeLightbox(event, 'bus1')">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightboxBtn('bus1')">✕</button>
+    <div class="lightbox-img"><img src="bus1.jpg" alt="Yutong Luxury Coach"></div>
+    <div class="lightbox-body">
+      <span class="bus-tag">New</span>
+      <h2>Yutong Luxury Coach</h2>
+      <p>Premium white Yutong luxury coach, perfect for long-distance intercity routes and tourism operations. Features comfortable reclining seats, air conditioning, and ample luggage storage.</p>
+      <div class="lightbox-specs">
+        <div class="lightbox-spec"><strong>Brand</strong><span>Yutong</span></div>
+        <div class="lightbox-spec"><strong>Condition</strong><span>Brand New</span></div>
+        <div class="lightbox-spec"><strong>Capacity</strong><span>45–50 Seats</span></div>
+        <div class="lightbox-spec"><strong>Engine</strong><span>Diesel</span></div>
+        <div class="lightbox-spec"><strong>Use</strong><span>Long Distance / Tourism</span></div>
+        <div class="lightbox-spec"><strong>AC</strong><span>Yes</span></div>
+      </div>
+      <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%20Yutong%20Luxury%20Coach" class="btn-primary" target="_blank">Enquire on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lb-bus2" onclick="closeLightbox(event, 'bus2')">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightboxBtn('bus2')">✕</button>
+    <div class="lightbox-img"><img src="bus2.jpg" alt="Intercity Coach"></div>
+    <div class="lightbox-body">
+      <span class="bus-tag">Used</span>
+      <h2>Intercity Coach</h2>
+      <p>Certified used intercity coach in great working condition. Comfortable seating and reliable engine make it ideal for regional passenger routes across Africa.</p>
+      <div class="lightbox-specs">
+        <div class="lightbox-spec"><strong>Condition</strong><span>Certified Used</span></div>
+        <div class="lightbox-spec"><strong>Capacity</strong><span>39–45 Seats</span></div>
+        <div class="lightbox-spec"><strong>Engine</strong><span>Diesel</span></div>
+        <div class="lightbox-spec"><strong>Use</strong><span>Intercity Routes</span></div>
+        <div class="lightbox-spec"><strong>Inspection</strong><span>Pre-Shipment Done</span></div>
+        <div class="lightbox-spec"><strong>AC</strong><span>Yes</span></div>
+      </div>
+      <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%20Intercity%20Coach" class="btn-primary" target="_blank">Enquire on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lb-bus3" onclick="closeLightbox(event, 'bus3')">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightboxBtn('bus3')">✕</button>
+    <div class="lightbox-img"><img src="bus3.jpg" alt="City Bus Fleet"></div>
+    <div class="lightbox-body">
+      <span class="bus-tag">Used</span>
+      <h2>City Bus Fleet</h2>
+      <p>White and blue city buses available in bulk. Ideal for urban public transport operators. These buses have been thoroughly inspected and are ready for export. Bulk discounts available.</p>
+      <div class="lightbox-specs">
+        <div class="lightbox-spec"><strong>Condition</strong><span>Certified Used</span></div>
+        <div class="lightbox-spec"><strong>Capacity</strong><span>50–60 Seats</span></div>
+        <div class="lightbox-spec"><strong>Engine</strong><span>Diesel / CNG</span></div>
+        <div class="lightbox-spec"><strong>Use</strong><span>Urban Public Transport</span></div>
+        <div class="lightbox-spec"><strong>Availability</strong><span>Bulk Orders</span></div>
+        <div class="lightbox-spec"><strong>Inspection</strong><span>Pre-Shipment Done</span></div>
+      </div>
+      <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%20City%20Bus%20Fleet" class="btn-primary" target="_blank">Enquire on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lb-bus4" onclick="closeLightbox(event, 'bus4')">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightboxBtn('bus4')">✕</button>
+    <div class="lightbox-img"><img src="bus4.jpg" alt="Yutong Medium Coach"></div>
+    <div class="lightbox-body">
+      <span class="bus-tag">Used</span>
+      <h2>Yutong Medium Coach</h2>
+      <p>Blue Yutong medium coaches photographed directly at the Tuonan export yard in Anhui, China. Ready for immediate inspection and shipment. A reliable and popular choice for African operators.</p>
+      <div class="lightbox-specs">
+        <div class="lightbox-spec"><strong>Brand</strong><span>Yutong</span></div>
+        <div class="lightbox-spec"><strong>Condition</strong><span>Certified Used</span></div>
+        <div class="lightbox-spec"><strong>Capacity</strong><span>35–40 Seats</span></div>
+        <div class="lightbox-spec"><strong>Engine</strong><span>Diesel</span></div>
+        <div class="lightbox-spec"><strong>Location</strong><span>Anhui, China</span></div>
+        <div class="lightbox-spec"><strong>Ready</strong><span>Immediate Export</span></div>
+      </div>
+      <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%20Yutong%20Medium%20Coach" class="btn-primary" target="_blank">Enquire on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <img src="logo.jpg" alt="Tuonan Logo" class="footer-logo">
+      <p>Tuonan specializes in exporting new and certified used commercial buses from China to global markets with transparency and reliability.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="buses.html">Available Buses</a></li>
+        <li><a href="export.html">Export & Shipping</a></li>
+        <li><a href="spareparts.html">Spare Parts</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li>New Commercial Bus Export</li>
+        <li>Certified Used Bus Supply</li>
+        <li>Pre-Shipment Inspection</li>
+        <li>International Logistics</li>
+        <li>Export Documentation & Compliance</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li>📞 +86 139 6668 7331</li>
+        <li>✉️ tuonanotificlal@163.com</li>
+        <li>📍 拓南二手客车全球批发基地<br>Anhui, China</li>
+      </ul>
+      <a href="https://wa.me/8613966687331" class="whatsapp-btn" target="_blank">💬 WhatsApp Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Anhui Tuonan Automobile Service Co., Ltd. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+function openLightbox(id) {
+  document.getElementById('lb-' + id).classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightboxBtn(id) {
+  document.getElementById('lb-' + id).classList.remove('active');
+  document.body.style.overflow = '';
+}
+function closeLightbox(e, id) {
+  if (e.target === document.getElementById('lb-' + id)) {
+    closeLightboxBtn(id);
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.lightbox.active').forEach(lb => {
+      lb.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  }
+});
+</script>
+</body>
+</html>

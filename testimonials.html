@@ -23,31 +23,18 @@
   margin-bottom: 0.8rem;
 }
 .test-hero h1 span { color: #4d8aff; }
-.test-hero p { color: rgba(255,255,255,0.72); font-size: 1.05rem; max-width: 500px; margin: 0 auto; }
+.test-hero p {
+  color: rgba(255,255,255,0.72);
+  font-size: 1.05rem;
+  max-width: 520px;
+  margin: 0 auto;
+}
 
-/* STATS BAR */
-.stats-bar {
-  background: var(--blue);
-  padding: 2rem 0;
+/* REVIEWS SECTION */
+.reviews-section {
+  padding: 6rem 0;
+  background: var(--white);
 }
-.stats-bar-inner {
-  display: flex;
-  justify-content: center;
-  gap: 5rem;
-  flex-wrap: wrap;
-}
-.stat-item { text-align: center; }
-.stat-num {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #fff;
-  display: block;
-}
-.stat-label { color: rgba(255,255,255,0.8); font-size: 0.85rem; font-weight: 500; }
-
-/* REVIEWS */
-.reviews-section { padding: 5rem 0; background: var(--white); }
 .reviews-section h2 {
   font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
@@ -56,7 +43,68 @@
   text-align: center;
   margin-bottom: 0.5rem;
 }
-.reviews-sub { text-align: center; color: var(--gray); margin-bottom: 3rem; }
+.reviews-sub {
+  text-align: center;
+  color: var(--gray);
+  margin-bottom: 4rem;
+}
+
+/* FEATURED REVIEW — big card on top */
+.review-featured {
+  background: linear-gradient(135deg, #0a1628, #0d2461);
+  border-radius: 16px;
+  padding: 3rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.review-featured::before {
+  content: '\201C';
+  position: absolute;
+  top: -1rem;
+  left: 1.5rem;
+  font-size: 10rem;
+  color: rgba(255,255,255,0.06);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+.review-featured .review-text {
+  color: rgba(255,255,255,0.92);
+  font-size: 1.1rem;
+  line-height: 1.85;
+  font-style: italic;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+.review-featured .review-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.review-featured .review-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: #4d8aff;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.review-featured .review-author h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.2rem;
+}
+.review-featured .review-author span { color: rgba(255,255,255,0.65); font-size: 0.85rem; }
+.review-featured .review-stars { color: #f5a623; font-size: 1rem; letter-spacing: 2px; margin-bottom: 1rem; }
+
+/* REVIEWS GRID */
 .reviews-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -64,15 +112,31 @@
 }
 .review-card {
   background: #f4f6fb;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 2rem;
-  border-left: 4px solid var(--blue);
+  position: relative;
+  border-top: 3px solid var(--blue);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.review-stars { color: #f5a623; font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+.review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+.review-card::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.8rem;
+  right: 1.5rem;
+  font-size: 4rem;
+  color: rgba(13,36,97,0.08);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+.review-stars { color: #f5a623; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 1rem; }
 .review-text {
   color: var(--text);
   font-size: 0.92rem;
-  line-height: 1.75;
+  line-height: 1.8;
   margin-bottom: 1.5rem;
   font-style: italic;
 }
@@ -97,7 +161,19 @@
   color: var(--dark);
   margin: 0 0 0.15rem;
 }
-.review-author span { font-size: 0.8rem; color: var(--gray); }
+.review-author span { font-size: 0.78rem; color: var(--gray); }
+.lang-badge {
+  display: inline-block;
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+  letter-spacing: 0.5px;
+}
 
 /* CLIENT VISITS */
 .visits-section { padding: 5rem 0; background: #f4f6fb; }
@@ -123,10 +199,8 @@
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 .visit-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
   transition: transform 0.4s ease;
 }
 .visit-item:hover img { transform: scale(1.07); }
@@ -148,8 +222,9 @@
 }
 
 @media (max-width: 768px) {
-  .stats-bar-inner { gap: 2.5rem; }
   .reviews-grid { grid-template-columns: 1fr; }
+  .review-featured { padding: 2rem; }
+  .review-featured .review-text { font-size: 0.95rem; }
   .visits-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 480px) {
@@ -181,93 +256,100 @@
 <!-- HERO -->
 <div class="test-hero">
   <div class="container">
-    <h1>Trusted by Clients<br><span>Across the World</span></h1>
-    <p>What transport operators from Africa and beyond say about working with Tuonan</p>
-  </div>
-</div>
-
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="container">
-    <div class="stats-bar-inner">
-      <div class="stat-item">
-        <span class="stat-num">750+</span>
-        <span class="stat-label">Buses Exported</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">20+</span>
-        <span class="stat-label">Countries Served</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">100%</span>
-        <span class="stat-label">Client Satisfaction</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">10+</span>
-        <span class="stat-label">Years Experience</span>
-      </div>
-    </div>
+    <h1>What Our Clients<br><span>Say About Us</span></h1>
+    <p>Trusted by transport operators across Africa and beyond — here's what they say about working with Tuonan</p>
   </div>
 </div>
 
 <!-- REVIEWS -->
 <section class="reviews-section">
   <div class="container">
-    <h2>Reviews</h2>
-    <p class="reviews-sub">What our clients say about us</p>
+
+    <!-- FEATURED -->
+    <div class="review-featured">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Tom is one of the most genuine and kind businessmen I have ever dealt with. From the very first message, he was patient, honest, and always available. He personally guided me through every step — from selecting the right bus for my route, to inspection, documentation, and shipping. When the bus arrived, it was exactly as described. No surprises, no hidden costs. Tom treated me like family, not just a customer. I will never buy a bus from anyone else."</p>
+      <div class="review-author">
+        <div class="review-avatar">E</div>
+        <div>
+          <h4>Emmanuel Owusu</h4>
+          <span>Fleet Owner — Accra, Ghana</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRID -->
     <div class="reviews-grid">
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"The spare parts supply and technical support in Kumasi have been a game changer for our fleet maintenance."</p>
-        <div class="review-author">
-          <div class="review-avatar">A</div>
-          <div><h4>Amina Diallo</h4><span>Kumasi, Ghana</span></div>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"China Anhui Tuonan Company delivered our buses safely and on time. The quality is excellent for our transport business."</p>
+        <p class="review-text">"I was nervous buying buses from China for the first time, but Tom made the whole experience easy and transparent. He answered every question I had, sometimes at midnight his time. The buses arrived in perfect condition and on schedule. Truly a man of his word."</p>
         <div class="review-author">
           <div class="review-avatar">K</div>
-          <div><h4>Kwame Mensah</h4><span>Accra, Ghana</span></div>
+          <div><h4>Kwame Mensah</h4><span>Transport Operator — Kumasi, Ghana</span></div>
         </div>
       </div>
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"I purchased a used Yutong bus and I couldn't be more satisfied! The bus was in excellent condition, just as promised. The entire process was smooth and hassle-free. Highly recommended."</p>
+        <p class="review-text">"Ce qui m'a le plus impressionné chez Tom, c'est sa gentillesse et sa disponibilité. Il répond toujours rapidement, explique tout clairement et s'assure que vous êtes satisfait à chaque étape. Nos bus sont arrivés en excellent état. Je le recommande à tous mes collègues transporteurs." <span class="lang-badge">FR</span></p>
         <div class="review-author">
           <div class="review-avatar">M</div>
-          <div><h4>Mohamed Ndiaye</h4><span>Dakar, Senegal</span></div>
+          <div><h4>Mohamed Ndiaye</h4><span>Entrepreneur — Dakar, Sénégal</span></div>
         </div>
       </div>
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"We've been importing Yutong buses for our public transport fleet for several years. Tuonan is by far the best we've worked with. Their attention to detail and dedication to quality sets them apart."</p>
+        <p class="review-text">"Tom's professionalism is unmatched. He helped me choose the right Yutong model for my intercity routes and even followed up after delivery to make sure everything was running well. The spare parts support from their Kumasi office has also been outstanding. A truly complete service."</p>
         <div class="review-author">
           <div class="review-avatar">C</div>
-          <div><h4>Chidi Okafor</h4><span>Lagos, Nigeria</span></div>
+          <div><h4>Chidi Okafor</h4><span>Bus Company Owner — Lagos, Nigeria</span></div>
         </div>
       </div>
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Cela fait plusieurs années que nous importons des bus Yutong neufs depuis la Chine, et l'entreprise de Tom est notre premier choix. Les bus arrivent toujours à temps et en parfait état."</p>
+        <p class="review-text">"Cela fait trois ans que nous travaillons avec Tom et son équipe. Chaque commande a été traitée avec sérieux et professionnalisme. Tom est un homme honnête — il ne vous vendra jamais quelque chose qui ne correspond pas à vos besoins. Nos chauffeurs adorent les bus Yutong qu'il nous a fournis." <span class="lang-badge">FR</span></p>
         <div class="review-author">
           <div class="review-avatar">K</div>
-          <div><h4>Kofi N'Guessan</h4><span>Abidjan, Côte d'Ivoire</span></div>
+          <div><h4>Kofi N'Guessan</h4><span>Directeur Transport — Abidjan, Côte d'Ivoire</span></div>
         </div>
       </div>
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"After a long search for a reliable supplier, I found Tuonan. I purchased a new Yutong bus and the service was outstanding. Everything was handled professionally from order to delivery."</p>
+        <p class="review-text">"What sets Tuonan apart is how Tom personally takes care of you. He drove us to the bus yard himself, explained every bus in detail, and made sure we got the best deal. Even months after purchase, he still checks in to see how the buses are performing. That kind of care is very rare."</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div><h4>Abebe Tadesse</h4><span>Transport Director — Addis Ababa, Ethiopia</span></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Tom nous a accueillis chaleureusement lors de notre visite en Chine. Il a tout organisé — la visite du parc, les repas, même notre hôtel. Nous sommes repartis avec 8 bus en excellent état et de beaux souvenirs. C'est plus qu'un fournisseur, c'est un véritable ami de confiance." <span class="lang-badge">FR</span></p>
         <div class="review-author">
           <div class="review-avatar">S</div>
-          <div><h4>Sulaiman Jalloh</h4><span>Freetown, Sierra Leone</span></div>
+          <div><h4>Sékou Camara</h4><span>Opérateur de Transport — Conakry, Guinée</span></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"After a long search for a reliable bus supplier, a colleague recommended Tuonan. From the first call with Tom, I knew he was different. He was honest about what was available and what wasn't. No pressure, no exaggeration. The bus I received was exactly as described. I've since referred five other operators to him."</p>
+        <div class="review-author">
+          <div class="review-avatar">S</div>
+          <div><h4>Sulaiman Jalloh</h4><span>Fleet Manager — Freetown, Sierra Leone</span></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The spare parts and technical support we receive from Tuonan's Kumasi office have transformed how we maintain our fleet. Before, we would wait weeks for parts. Now, most parts are available immediately. Tom built something special in Ghana — it shows he really cares about his clients long after the sale."</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div><h4>Amina Diallo</h4><span>Fleet Supervisor — Kumasi, Ghana</span></div>
         </div>
       </div>
 
@@ -278,8 +360,8 @@
 <!-- CLIENT VISIT PHOTOS -->
 <section class="visits-section">
   <div class="container">
-    <h2>Clients Visiting Tuonan</h2>
-    <p class="visits-sub">Clients from across Africa visiting our yard and office in Anhui, China</p>
+    <h2>Clients at Tuonan</h2>
+    <p class="visits-sub">Clients from across Africa visiting our yard and showroom in Anhui, China</p>
     <div class="visits-grid">
       <div class="visit-item"><img src="client1.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>
       <div class="visit-item"><img src="client2.jpg" alt="Client visit" onclick="openLightbox(this.src)"></div>

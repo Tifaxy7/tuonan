@@ -5,10 +5,268 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spare Parts & Technical Support | Tuonan Bus Export</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+
+/* HERO */
+.sp-hero {
+  background: linear-gradient(135deg, #0a1628 0%, #0d2461 100%);
+  padding: 8rem 0 5rem;
+  text-align: center;
+}
+.sp-hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.sp-hero h1 span { color: #4d8aff; }
+.sp-hero p {
+  color: rgba(255,255,255,0.72);
+  font-size: 1.1rem;
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+}
+.sp-hero-badges {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.sp-badge {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  padding: 0.45rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* SERVICES 2-CARD */
+.services-section {
+  padding: 5rem 0;
+  background: #f0f4fb;
+}
+.services-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.services-sub {
+  text-align: center;
+  color: var(--gray);
+  margin-bottom: 3rem;
+}
+.services-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.service-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.13);
+}
+.service-card-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+.service-card-body {
+  padding: 1.8rem;
+}
+.service-card-body h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 0.6rem;
+}
+.service-card-body p {
+  color: var(--gray);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* PARTS PHOTO GRID */
+.parts-photo-section {
+  padding: 5rem 0;
+  background: var(--white);
+}
+.parts-photo-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.parts-photo-sub {
+  text-align: center;
+  color: var(--gray);
+  margin-bottom: 3rem;
+}
+.parts-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+.part-photo-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+.part-photo-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.part-photo-card:hover img { transform: scale(1.05); }
+.part-photo-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(5,15,40,0.82));
+  color: #fff;
+  padding: 2rem 1.2rem 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.part-photo-label span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  margin-top: 0.2rem;
+}
+
+/* PARTS CATALOGUE */
+.catalogue-section {
+  padding: 5rem 0;
+  background: #f0f4fb;
+}
+.catalogue-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.catalogue-sub {
+  text-align: center;
+  color: var(--gray);
+  margin-bottom: 3rem;
+}
+.catalogue-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.cat-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.8rem 1.2rem;
+  text-align: center;
+  border-top: 3px solid var(--blue);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.cat-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+.cat-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.4rem;
+}
+.cat-card p {
+  font-size: 0.8rem;
+  color: var(--gray);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* SUPPORT STRIP */
+.support-strip {
+  background: var(--dark);
+  padding: 4rem 0;
+}
+.support-strip-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+.support-item h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.support-item p { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin: 0; }
+.support-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+
+/* LIGHTBOX */
+.img-lightbox {
+  display: none; position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999; align-items: center;
+  justify-content: center; padding: 2rem;
+}
+.img-lightbox.open { display: flex; }
+.img-lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 8px; }
+.img-lightbox-close {
+  position: fixed; top: 1.5rem; right: 1.5rem;
+  background: var(--blue); color: white; border: none;
+  width: 42px; height: 42px; border-radius: 50%;
+  font-size: 1.3rem; cursor: pointer; z-index: 10000;
+}
+
+@media (max-width: 768px) {
+  .services-cards { grid-template-columns: 1fr; }
+  .parts-photo-grid { grid-template-columns: 1fr; }
+  .catalogue-grid { grid-template-columns: repeat(2, 1fr); }
+  .support-strip-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 480px) {
+  .catalogue-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
 </head>
 <body>
+
+<div class="img-lightbox" id="imgLightbox" onclick="closeLightbox(event)">
+  <button class="img-lightbox-close" onclick="document.getElementById('imgLightbox').classList.remove('open')">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 <nav class="navbar">
   <a href="index.html" class="logo"><img src="logo.jpg" alt="Tuonan Bus Export Logo"></a>
@@ -24,93 +282,156 @@
   </ul>
 </nav>
 
-<div class="page-hero">
+<!-- HERO -->
+<div class="sp-hero">
   <div class="container">
-    <div class="section-label">After Sales</div>
-    <h1>Spare Parts & <span>Technical Support</span></h1>
-    <p>Keeping your fleet running with genuine parts and expert guidance</p>
+    <h1>Spare Parts &<br><span>Technical Support</span></h1>
+    <p>Genuine components and expert guidance to keep your fleet running at full capacity</p>
+    <div class="sp-hero-badges">
+      <span class="sp-badge">⚙️ Engine Parts</span>
+      <span class="sp-badge">🛞 Tyres & Wheels</span>
+      <span class="sp-badge">❄️ AC Systems</span>
+      <span class="sp-badge">💡 Electrical</span>
+      <span class="sp-badge">🛑 Brakes</span>
+      <span class="sp-badge">🔧 Transmission</span>
+    </div>
+    <a href="https://wa.me/8613966687331?text=Hello,%20I%20need%20spare%20parts%20for%20my%20bus" class="btn-primary" target="_blank">💬 Order Parts on WhatsApp</a>
   </div>
 </div>
 
-<section class="parts-section">
+<!-- OUR SERVICES -->
+<section class="services-section">
   <div class="container">
-    <div class="section-label">What We Supply</div>
-    <h2>Genuine Parts for Your Fleet</h2>
-    <div class="parts-grid">
-      <div class="part-card">
-        <div class="part-icon">⚙️</div>
-        <h3>Engine Parts</h3>
-        <p>Genuine engine components including filters, belts, gaskets, pistons, and fuel system parts for all bus models we supply.</p>
-      </div>
-      <div class="part-card">
-        <div class="part-icon">🛞</div>
-        <h3>Tyres & Wheels</h3>
-        <p>Quality tyres and wheel components suited for African road conditions, sourced directly from Chinese manufacturers.</p>
-      </div>
-      <div class="part-card">
-        <div class="part-icon">🔧</div>
-        <h3>Transmission Parts</h3>
-        <p>Gearbox components, clutch systems, driveshafts, and related transmission parts for smooth operation.</p>
-      </div>
-      <div class="part-card">
-        <div class="part-icon">🛑</div>
-        <h3>Brake System</h3>
-        <p>Brake pads, discs, drums, calipers, and hydraulic components to keep your buses safe on the road.</p>
-      </div>
-      <div class="part-card">
-        <div class="part-icon">❄️</div>
-        <h3>Air Conditioning</h3>
-        <p>AC compressors, condensers, evaporators, and refrigerant supplies to keep passengers comfortable.</p>
-      </div>
-      <div class="part-card">
-        <div class="part-icon">💡</div>
-        <h3>Electrical Components</h3>
-        <p>Alternators, starters, wiring harnesses, sensors, lights, and control modules for all electrical systems.</p>
-      </div>
-      <div class="part-card">
-        <div class="part-icon">🪑</div>
-        <h3>Interior & Body Parts</h3>
-        <p>Seats, panels, windows, doors, flooring, and other interior and exterior body components.</p>
-      </div>
-      <div class="part-card">
-        <div class="part-icon">🔩</div>
-        <h3>Suspension & Steering</h3>
-        <p>Shock absorbers, leaf springs, steering components, and chassis parts for a smooth and safe ride.</p>
-      </div>
-    </div>
-
-    <div style="margin-top: 5rem;">
-      <div class="section-label">Technical Support</div>
-      <h2>Expert Guidance When You Need It</h2>
-      <div class="why-grid">
-        <div class="why-card">
-          <div class="why-icon">📱</div>
-          <h3>Remote Support</h3>
-          <p>Our technical team is available via WhatsApp and phone to help diagnose issues and guide your mechanics through repairs.</p>
+    <h2>Our Services</h2>
+    <p class="services-sub">Reliable spare parts supply and expert technical support for your fleet</p>
+    <div class="services-cards">
+      <div class="service-card">
+        <img src="sp-wheel.jpg" alt="Spare Parts" class="service-card-img">
+        <div class="service-card-body">
+          <h3>Spare Parts Supply</h3>
+          <p>Engine, brake, suspension, electrical, and body parts available for quick delivery. We source genuine components directly from Chinese manufacturers for all bus models we supply.</p>
         </div>
-        <div class="why-card">
-          <div class="why-icon">📘</div>
-          <h3>Technical Manuals</h3>
-          <p>We provide service manuals and technical documentation for all bus models we export to help your team maintain the fleet.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">🚀</div>
-          <h3>Fast Parts Shipping</h3>
-          <p>Urgent spare parts can be shipped via air freight to minimize downtime and get your buses back on the road quickly.</p>
+      </div>
+      <div class="service-card">
+        <img src="sp-engine.jpg" alt="Technical Support" class="service-card-img">
+        <div class="service-card-body">
+          <h3>Technical Support</h3>
+          <p>Our technical team is available via WhatsApp and phone to diagnose issues and guide your mechanics through repairs. We also supply service manuals for all exported bus models.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- PARTS PHOTO GALLERY -->
+<section class="parts-photo-section">
+  <div class="container">
+    <h2>Inside the Bus</h2>
+    <p class="parts-photo-sub">A closer look at the components we support and supply</p>
+    <div class="parts-photo-grid">
+      <div class="part-photo-card" onclick="openLightbox('sp-wheel.jpg')">
+        <img src="sp-wheel.jpg" alt="Wheel & Tyre">
+        <div class="part-photo-label">Tyres & Wheels<span>Direct from Chinese manufacturers</span></div>
+      </div>
+      <div class="part-photo-card" onclick="openLightbox('sp-ac.jpg')">
+        <img src="sp-ac.jpg" alt="AC System">
+        <div class="part-photo-label">Air Conditioning System<span>Midea & compatible units</span></div>
+      </div>
+      <div class="part-photo-card" onclick="openLightbox('sp-electrical.jpg')">
+        <img src="sp-electrical.jpg" alt="Electrical Panel">
+        <div class="part-photo-label">Electrical Components<span>Control panels, wiring & modules</span></div>
+      </div>
+      <div class="part-photo-card" onclick="openLightbox('sp-engine.jpg')">
+        <img src="sp-engine.jpg" alt="Engine Bay">
+        <div class="part-photo-label">Engine Parts<span>Filters, belts, gaskets & more</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTS CATALOGUE -->
+<section class="catalogue-section">
+  <div class="container">
+    <h2>What We Supply</h2>
+    <p class="catalogue-sub">Genuine parts for every system on your bus</p>
+    <div class="catalogue-grid">
+      <div class="cat-card">
+        <div class="cat-icon">⚙️</div>
+        <h3>Engine Parts</h3>
+        <p>Filters, belts, gaskets, pistons & fuel system parts</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🛞</div>
+        <h3>Tyres & Wheels</h3>
+        <p>Quality tyres suited for African road conditions</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🔧</div>
+        <h3>Transmission</h3>
+        <p>Gearbox, clutch systems & driveshafts</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🛑</div>
+        <h3>Brake System</h3>
+        <p>Pads, discs, drums, calipers & hydraulics</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">❄️</div>
+        <h3>Air Conditioning</h3>
+        <p>Compressors, condensers & refrigerant</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">💡</div>
+        <h3>Electrical</h3>
+        <p>Alternators, starters, sensors & wiring</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🪑</div>
+        <h3>Interior & Body</h3>
+        <p>Seats, panels, windows & doors</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🔩</div>
+        <h3>Suspension</h3>
+        <p>Shock absorbers, springs & steering parts</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT STRIP -->
+<section class="support-strip">
+  <div class="container">
+    <div class="support-strip-inner">
+      <div class="support-item">
+        <div class="support-icon">📱</div>
+        <h3>Remote Support</h3>
+        <p>Our technical team is available via WhatsApp and phone to diagnose issues and guide your mechanics through repairs.</p>
+      </div>
+      <div class="support-item">
+        <div class="support-icon">📘</div>
+        <h3>Technical Manuals</h3>
+        <p>Service manuals and technical documentation provided for all bus models we export to help your team maintain the fleet.</p>
+      </div>
+      <div class="support-item">
+        <div class="support-icon">🚀</div>
+        <h3>Fast Parts Shipping</h3>
+        <p>Urgent spare parts shipped via air freight to minimize downtime and get your buses back on the road quickly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
 <section class="cta-section">
   <div class="container">
     <h2>Need Spare Parts?</h2>
-    <p>Send us your bus model and the parts you need. We'll get back to you with availability and pricing.</p>
+    <p>Send us your bus model and the parts you need. We'll respond with availability and pricing.</p>
     <a href="https://wa.me/8613966687331?text=Hello,%20I%20need%20spare%20parts%20for%20my%20bus" class="btn-primary" target="_blank">💬 Order Parts on WhatsApp</a>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="footer">
 <div class="footer-top">
   <div class="container footer-grid">
@@ -156,5 +477,24 @@
 </footer>
 
 <script src="main.js"></script>
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('imgLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (e.target === document.getElementById('imgLightbox')) {
+    document.getElementById('imgLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('imgLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+</script>
 </body>
 </html>

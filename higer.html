@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Higer Buses | Tuonan Bus Export</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.brand-hero {
+  background: #0d2461;
+  padding: 7rem 0 3rem;
+  text-align: center;
+}
+.brand-hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.brand-hero-logo {
+  width: 90px;
+  height: auto;
+}
+.brand-hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: #fff;
+}
+.brand-hero p {
+  color: rgba(255,255,255,0.75);
+  font-size: 1.1rem;
+  max-width: 550px;
+}
+
+/* BUS LISTING */
+.bus-listing {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--light-gray);
+}
+.bus-listing:nth-child(even) { background: var(--off-white); }
+.bus-listing:nth-child(odd) { background: var(--white); }
+
+.bus-listing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+.bus-listing-img {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+.bus-listing-img img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+.bus-listing-info h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 1.5rem;
+}
+.specs-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 1rem;
+  display: block;
+}
+.specs-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+.specs-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--light-gray);
+  color: var(--text);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.specs-list li::before {
+  content: '•';
+  color: var(--blue);
+  font-weight: bold;
+}
+
+/* PHOTO GALLERY */
+.bus-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+}
+.bus-gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.bus-gallery img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* LIGHTBOX */
+.img-lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.img-lightbox.open { display: flex; }
+.img-lightbox img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.img-lightbox-close {
+  position: fixed;
+  top: 1.5rem; right: 1.5rem;
+  background: var(--blue);
+  color: white;
+  border: none;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+@media (max-width: 768px) {
+  .bus-listing-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .bus-gallery { grid-template-columns: repeat(2, 1fr); }
+  .bus-gallery img { height: 140px; }
+}
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="img-lightbox" id="imgLightbox" onclick="closeLightbox(event)">
+  <button class="img-lightbox-close" onclick="document.getElementById('imgLightbox').classList.remove('open')">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="logo.jpg" alt="Tuonan Bus Export Logo"></a>
+  <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="buses.html" class="active">Available Buses</a></li>
+    <li><a href="export.html">Export & Shipping</a></li>
+    <li><a href="spareparts.html">Spare Parts</a></li>
+    <li><a href="testimonials.html">Testimonials</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- BRAND HERO -->
+<div class="brand-hero">
+  <div class="brand-hero-inner">
+    <img src="higer-logo.png" alt="Higer Logo" class="brand-hero-logo">
+    <h1>Higer Coaches</h1>
+    <p>Reliable buses for long-distance, tourism, and commercial use</p>
+  </div>
+</div>
+
+<!-- BUS 1: Higer Coach (Red) -->
+<section class="bus-listing">
+  <div class="container">
+    <div class="bus-listing-grid">
+      <div class="bus-listing-img">
+        <img src="higer-coach-main.jpg" alt="Higer Coach">
+      </div>
+      <div class="bus-listing-info">
+        <h2>Higer KLQ6145BE41</h2>
+        <span class="specs-title">Key Specifications</span>
+        <ul class="specs-list">
+          <li>Seating Capacity: 50 seats</li>
+          <li>Engine: Weichai 336HP</li>
+          <li>Emission Standard: National VI</li>
+          <li>Mileage: 100,000 km</li>
+          <li>Usage: Company commuter vehicle</li>
+          <li>Condition: Well maintained</li>
+          <li>Documentation: Official operation records available</li>
+          <li>Stock available: 40</li>
+        </ul>
+        <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%20Higer%20KLQ6145BE41%20Coach" class="btn-primary" target="_blank">💬 Enquire on WhatsApp</a>
+      </div>
+    </div>
+    <div class="bus-gallery">
+      <img src="higer-coach-side.jpg" alt="Higer Coach rear-side view" onclick="openLightbox(this.src)">
+      <img src="higer-coach-side2.jpg" alt="Higer Coach side view" onclick="openLightbox(this.src)">
+      <img src="higer-coach-front.jpg" alt="Higer Coach front view" onclick="openLightbox(this.src)">
+      <img src="higer-coach-cockpit.jpg" alt="Higer Coach cockpit" onclick="openLightbox(this.src)">
+      <img src="higer-coach-interior1.jpg" alt="Higer Coach interior seats" onclick="openLightbox(this.src)">
+      <img src="higer-coach-interior2.jpg" alt="Higer Coach seat detail" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+</section>
+
+<!-- BUS 2: Higer City Bus (Teal) -->
+<section class="bus-listing">
+  <div class="container">
+    <div class="bus-listing-grid">
+      <div class="bus-listing-img">
+        <img src="higer-city-main.jpg" alt="Higer City Bus">
+      </div>
+      <div class="bus-listing-info">
+        <h2>Higer City Bus</h2>
+        <span class="specs-title">Key Specifications</span>
+        <ul class="specs-list">
+          <li>Seating Capacity: 50 seats</li>
+          <li>Engine: YC4G180N-50</li>
+          <li>Emission Standard: National VI</li>
+          <li>Mileage: 250,000–400,000 km</li>
+          <li>Usage: Natural gas city bus</li>
+          <li>Condition: Well maintained</li>
+          <li>Diesel vehicle</li>
+          <li>Stock available: 30 units</li>
+        </ul>
+        <a href="https://wa.me/8613966687331?text=Hello,%20I%20am%20interested%20in%20the%20Higer%20City%20Bus" class="btn-primary" target="_blank">💬 Enquire on WhatsApp</a>
+      </div>
+    </div>
+    <div class="bus-gallery">
+      <img src="higer-city-rear.jpg" alt="Higer City Bus rear" onclick="openLightbox(this.src)">
+      <img src="higer-city-side1.jpg" alt="Higer City Bus side" onclick="openLightbox(this.src)">
+      <img src="higer-city-main.jpg" alt="Higer City Bus front" onclick="openLightbox(this.src)">
+      <img src="higer-city-cockpit.jpg" alt="Higer City Bus cockpit" onclick="openLightbox(this.src)">
+      <img src="higer-city-entry.jpg" alt="Higer City Bus entry door" onclick="openLightbox(this.src)">
+      <img src="higer-city-interior1.jpg" alt="Higer City Bus interior" onclick="openLightbox(this.src)">
+      <img src="higer-city-interior2.jpg" alt="Higer City Bus interior 2" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-top">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>Tuonan Bus Export</h4>
+      <p>Tuonan specializes in exporting new and certified used commercial buses from China to global markets with transparency and reliability.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="buses.html">Available Buses</a></li>
+        <li><a href="export.html">Export & Shipping</a></li>
+        <li><a href="spareparts.html">Spare Parts</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li>New Commercial Bus Export</li>
+        <li>Certified Used Bus Supply</li>
+        <li>Pre-Shipment Inspection</li>
+        <li>International Logistics</li>
+        <li>Export Documentation & Compliance</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacts Information</h4>
+      <ul>
+        <li>📞 +8613966687331</li>
+        <li>✉️ tuonanotificlal@163.com</li>
+        <li>📍 拓南二手客车全球批发基地<br>Anhui, China</li>
+      </ul>
+      <a href="https://wa.me/8613966687331" class="whatsapp-btn" target="_blank">💬 WhatsApp Us</a>
+    </div>
+  </div>
+</div>
+<div class="footer-bottom">
+  <p>© 2025 Anhui Tuonan Automobile Service Co., Ltd. All rights reserved.</p>
+</div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('imgLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (e.target === document.getElementById('imgLightbox')) {
+    document.getElementById('imgLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('imgLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+</script>
+</body>
+</html>
